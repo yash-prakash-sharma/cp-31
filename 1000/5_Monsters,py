@@ -1,0 +1,15 @@
+# https://codeforces.com/problemset/problem/1849/B
+import heapq
+T = int(input())
+for _ in range(T):
+    n,k = list(map(int,input().split()))
+    a= list(map(int,input().split()))
+    res = []
+    for i,x in enumerate(a):
+        x%=k
+        if x==0:
+            x=k
+        res.append((x,i+1))
+    res.sort(key=lambda p: (-p[0]))
+    print(*[p[1] for p in res])
+    
