@@ -3,25 +3,12 @@ import math
 T = int(input())
 for _ in range(T):
     n,x = list(map(int, input().split()))
-    a = list(map(int,input().split()))
-    b = list(map(int,input().split()))
-    c = list(map(int,input().split()))
-    not_x=~x
-    tot_or=0
-    not_poss=tot_or!=x
-    i=0
-    while i<n and a[i]&not_x==0 and not_poss:
-        tot_or|=a[i]
-        if tot_or==x: not_poss=False
-        i+=1
-    i=0
-    while i<n and b[i]&not_x==0 and not_poss:
-        tot_or|=b[i]
-        if tot_or==x: not_poss=False
-        i+=1
-    i=0
-    while i<n and c[i]&not_x==0 and not_poss:
-        tot_or|=c[i]
-        if tot_or==x: not_poss=False
-        i+=1
-    print("No") if not_poss else print("Yes")
+    a = [list(map(int, input().split())) for _ in range(3)]
+    tot=0
+    for i in range(3):
+        cur,j=0,0
+        while j<n and (cur|a[i][j]|x)==x:
+            cur|=a[i][j]
+            tot|=a[i][j]
+            j+=1
+    print("Yes") if tot==x else print("No")
