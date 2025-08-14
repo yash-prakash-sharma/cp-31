@@ -8,18 +8,12 @@ for _ in range(T):
     a.sort(reverse=True)
     b.sort(reverse=True)
     i,j=0,0
-    diff=[]
+    res=1
     poss=True
     while poss and j<n:
         while i<n and a[i]>b[j]:
             i+=1
         if i==0: poss=False
-        diff.append(i)
+        res=(res*(i-j))%mod
         j+=1
-    # print(diff)
-    i,res=0,1
-    while poss and i<n:
-        if diff[i]-i<=0: poss=False
-        res=(res*(diff[i]-i))%mod
-        i+=1
     print(res) if poss else print(0)
