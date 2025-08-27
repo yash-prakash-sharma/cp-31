@@ -6,19 +6,16 @@ for _ in range(T):
     a = list(map(int, input().split()))
     q = list(map(int, input().split()))
     pre = [0]*n
-    m={}
+    pmax = [0]*n
     pre[0]=a[0]
+    pmax[0]=a[0]
     for i in range(1,n):
         pre[i]=pre[i-1]+a[i]
-    maxi=0
-    for i in range(n):
-        maxi=max(a[i],maxi)
-        m[maxi]=i
-    keys = sorted(m)
+        pmax[i]=max(a[i],pmax[i-1])
     for val in q:
-        ind=bisect.bisect_right(keys,val)-1
+        ind=bisect.bisect_right(pmax,val)-1
         if ind<0:
             print(0, end=' ')
         else:
-            print(pre[m[keys[ind]]], end=' ')
+            print(pre[ind], end=' ')
     print()
